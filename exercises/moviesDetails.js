@@ -1,3 +1,4 @@
+const axios = require('axios');
 module.exports.run = function (movies) {
 	/*
 		You are given a list of urls that will be used to search up movies.
@@ -16,5 +17,25 @@ module.exports.run = function (movies) {
 	
 		Write your code below the comment.
 	*/
+	let moviesList = []
 
+	const fetchURL = async () => {
+		for (let i = 0; i < movies.length; i++) {
+			try {
+				let res = await axios.get(movies[i]);
+				let newMovie = {};
+
+				newMovie['Title'] = res.data.Title;
+				newMovie['Year'] = res.data.Year;
+				newMovie['Genre'] = res.data.Genre;
+
+				moviesList.push(newMovie);
+			}
+			catch (err) {
+				return err;
+			}
+		}
+	}
+
+	return moviesList;
 };

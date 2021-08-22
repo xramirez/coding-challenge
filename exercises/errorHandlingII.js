@@ -1,5 +1,4 @@
 const axios = require('axios');
-
 module.exports.run = function (url) {
 	/*
 		You are given a url. Make a GET call with axios using the given url.
