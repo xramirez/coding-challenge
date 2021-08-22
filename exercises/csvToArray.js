@@ -36,21 +36,26 @@ module.exports.run = function (csv) {
 	//For each of the lines after the first, they are split by their delimiter, in this case a comma.
 	//A new object is declared, one that will fit each of the pieces of data and assign them to their respective property name
 	//At the end, once all the data is stored in that new object it is appended to the array of objects
-	for (let i = 1; i < lines.length; i++) {
-		let lineData = lines[i].split(',');
-		//console.log("Line data: ", lineData);
-		let newObject = {};
+	try {
+		for (let i = 1; i < lines.length; i++) {
+			let lineData = lines[i].split(',');
+			//console.log("Line data: ", lineData);
+			let newObject = {};
 
-		for (let j = 0; j < variableNames.length; j++) {
-			newObject[variableNames[j].trim()] = lineData[j].trim();
+			for (let j = 0; j < variableNames.length; j++) {
+				newObject[variableNames[j].trim()] = lineData[j].trim();
+			}
+
+			objectArray.push(newObject);
 		}
-
-		objectArray.push(newObject);
+	}
+	catch (err) {
+		throw (err);
 	}
 
 	//At the end of it all, there should be a full array of objects, each of them with x number of properties, and data from the lines following assigned
 	//To their respective properties. This array is then stringified, and printed to console. I will also pass it as a return statement, in case that needs to be done. 
-	console.log(JSON.stringify(objectArray));
+	//console.log(JSON.stringify(objectArray));
 	return JSON.stringify(objectArray);
 };
 

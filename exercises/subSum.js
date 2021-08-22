@@ -41,7 +41,7 @@ module.exports.run = function (x, y) {
 	}
 	else {
 		return null;
-		console.log("Invalid coordinates were submitted!");
+		//console.log("Invalid coordinates were submitted!");
 	}
 };
 
